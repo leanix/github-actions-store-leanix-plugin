@@ -1,0 +1,25 @@
+initscript {
+    repositories {
+        maven {
+            url '<https://plugins.gradle.org/m2/'>
+        }
+    }
+
+    dependencies {
+        classpath 'com.github.jk1:gradle-license-report:1.16'
+    }
+}
+
+import com.github.jk1.license.render.*
+
+allprojects {
+    rootProject.allprojects {
+        apply plugin: 'java'
+        apply plugin: com.github.jk1.license.LicenseReportPlugin
+        licenseReport {
+            // Set custom report renderer, implementing ReportRenderer.
+            // Yes, you can write your own to support any format necessary.
+            renderers = [new JsonReportRenderer('licenses.json')]
+        }
+    }
+}
