@@ -6,7 +6,10 @@
   "scripts": {
     "build": "ncc build index.js --license licenses.txt"
   },
-  "keywords": ["LeanIX", "Microservice Intelligence"],
+  "keywords": [
+    "LeanIX",
+    "Microservice Intelligence"
+  ],
   "author": "LeanIX",
   "license": "Apache License 2.0",
   "dependencies": {

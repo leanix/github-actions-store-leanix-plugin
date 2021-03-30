@@ -141,6 +141,14 @@ function getDependenciesFile(dependencyManager) {
   return fs.createReadStream(conf[dependencyManager]);
 }
 
+function getCoreInputOrError(name) {
+  let input = core.getInput(name);
+  if(!input) {
+    throw new Error(`Input (${name}) cannot be empty`);
+  }
+  return input;
+}
+
 async function main() {
   try {
     // the host-address of the connector API
@@ -152,9 +160,7 @@ async function main() {
     // The stage that is deployed to
     const stage = core.getInput("stage");
     // the version of the deployed product
-    const version = core.getInput("version")
-      ? core.getInput("version")
-      : process.env.GITHUB_SHA; // or maybe use GITHUB_REF, ...
+    const version = getCoreInputOrError("version");
     const dependencyManager = core.getInput("dependency-manager");
 
     const jwtToken = await getJWTToken(secret, host);
