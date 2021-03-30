@@ -1,24 +1,24 @@
 name: "LeanIX Microservice Intelligence"
-description: "Send information to the LeanIX workspace"
+description: "Capture microservice and deployment information and send it to a LeanIX workspace"
 inputs:
   host:
-    description: "The LeanIX host where the connector is located, e.g.: eu.leanix.net"
+    description: "The LeanIX host where the connector is located, e.g: eu.leanix.net"
     required: true
   api-token: # token for LeanIX API
-    description: "API-token for LIXMID"
+    description: "API-token for LeanIX workspace"
     required: true
   manifest-path: #path to the LeanIX manifest
-    description: "The location of the manifest file that includes information to be send to the LeanIX-connector."
+    description: "The location of the manifest file in your repository that includes information to be send to the CI/CD connector"
     required: true
     default: "/lx-manifest.yml"
   stage: #the stage the workflow is triggered for
-    description: "The stage the workflow is triggered for."
+    description: "The deployment stage the workflow triggered for"
     required: true
   version: #the current version the workflow is triggered for.
-    description: "The current version the workflow is triggered for."
+    description: "The current deployment version the workflow is triggered for"
     required: true
   dependency-manager:
-    description: "Type of the project"
+    description: "Type of the dependency manager used for the project eg: NPM, MAVEN"
     required: true
 runs:
   using: 'docker'

@@ -1,7 +1,7 @@
 {
   "name": "leanix-microservice-intelligence",
   "version": "1.0.0",
-  "description": "",
+  "description": "Capture microservice and deployment information and send it to a LeanIX workspace",
   "main": "index.js",
   "scripts": {
     "build": "ncc build index.js --license licenses.txt"
