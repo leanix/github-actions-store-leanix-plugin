@@ -19,4 +19,4 @@ if [[ $1 = "GRADLE" ]]; then
     gradle generateLicenseReport -I /miCiCd-init.gradle
 fi
 
-node dist/index.js
+node /dist/index.js
