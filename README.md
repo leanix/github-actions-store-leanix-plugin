@@ -28,10 +28,13 @@ The current version the workflow is triggered for.
 
 ## Example usage
 
-uses: TODO
-with:
-host: ${{ env.HOST }}
-api-token: ${{ secrets.LEANIX_API_TOKEN }}
-manifest-path: ${{ env.LEANIX_MANIFEST_PATH }}
-stage: ${{ env.STAGE }}
-version: ${{ env.VERSION }}
+```
+  - name: LeanIX Microservice Intelligence
+    uses: leanix/github-actions-store-leanix-plugin@1.0.0
+    with:
+        host: ${{ env.HOST }}
+        api-token: ${{ secrets.LEANIX_API_TOKEN }}
+        manifest-path: ${{ env.LEANIX_MANIFEST_PATH }}
+        stage: ${{ env.STAGE }}
+        version: ${{ env.VERSION }}
+```
