@@ -157,6 +157,8 @@ function getCoreInputOrError(name) {
 }
 
 async function main() {
+  const allowFailure = core.getInput("allow-failure") === 'true';
+
   try {
     // the host-address of the connector API
     const host = core.getInput("host");
@@ -188,16 +190,16 @@ async function main() {
       console.log(file);
     }); */
   } catch (error) {
-    // concerning this error handling here: We don't want the action to fail at any time and kill the workflow.
-    // Just log the error and don't affect the success.
+      // concerning this error handling here: We don't want the action to fail at any time and kill the workflow.
+      // Just log the error and don't affect the success.
 
-    console.log(error.message);
+      console.log(error.message);
 
-    // TODO: comment in when in production to never fail
-    process.exit(0);
-
-    // TODO: for testing and seeing the failing, remove when going into production!
-    // core.setFailed(error.message);
+      if (allowFailure) {
+          process.exit(0);
+      } else {
+          core.setFailed(error.message);
+      }
   }
 }
 

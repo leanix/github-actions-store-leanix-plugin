@@ -20,6 +20,10 @@ inputs:
   dependency-manager:
     description: "Type of the dependency manager used for the project eg: NPM, MAVEN"
     required: true
+  allow-failure:
+    description: "Pipeline exits with a failure upon error if set to false"
+    required: false
+    default: "true"
 runs:
   using: 'docker'
   image: 'Dockerfile'
