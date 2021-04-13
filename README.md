@@ -1,4 +1,5 @@
 
+
 # LeanIX Microservice Intelligence action
 
 ## Description
@@ -8,7 +9,7 @@ On actions, workflows and using actions in workflows see also: https://docs.gith
 
 ## Usage
 
-### Requirements:
+### Prerequisites:
 
 #### manifest.yml file
 
@@ -19,9 +20,28 @@ Place the manifest.yml file containing the correct information about your projec
 In the "Settings" -> "Secrets" -> "Actions secrets" area of ​​the github project for which the action is used, a secret must be created, the value of which is a valid LeanIX token for the host that is used in the action. For the use of secrets in github see also https://docs.github.com/en/actions/reference/encrypted-secrets.
 
 
+#### Adding a workflow to your github repository
+
+If you are logged into github and are on the page of your repository, you will see a bar with tabs below the repository name, one of which is titled "Actions".
+
+![Actions tab](images/actions-tab.png)
+
+Under this tab you will find the workflows that are specified in your project. A workflow could be described as the collection of jobs, steps in jobs and actions (like the LeanIX Action) in steps.
+
+If you want to add the LeanIX action to a workflow, you can use the example workflow code listed below. Just add a file with a valid workflow yml-file to your repository unter the path **.github/workflows/** , for example a file containing the workflow below under **.github/workflows/test_leanix_action.yml** .
+
+More information on creating workflows for a project and adding actions to workflows can be found at [https://docs.github.com/en/actions/learn-github-actions/introduction-to-github-actions#create-an-example-workflow](https://docs.github.com/en/actions/learn-github-actions/introduction-to-github-actions#create-an-example-workflow "https://docs.github.com/en/actions/learn-github-actions/introduction-to-github-actions#create-an-example-workflow")
+
+
+#### Monitoring of the action
+
+  
+The monitoring of the workflows and thus also that of the actions belonging to your project also takes place under the tab "actions". There you can see the output of every step of your workflow. As part of a step, the LeanIX action will generate meaningful messages both in the event of successful execution and in the event of an error, which you can use to understand what happened during the execution of the action.
+
+
 ### Example workflow
 
-The input parameters used in the example are explained in more detail in the "Inputs" section.
+The input parameters used in the example are explained in more detail in the "Inputs" section. The workflow, including the action, is triggered when you push a new commit to the repository.
 
     name: leanix-action-test
     
