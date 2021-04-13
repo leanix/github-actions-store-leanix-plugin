@@ -60,7 +60,7 @@ The input parameters used in the example are explained in more detail in the "In
 In the example workflow, various environment variables are initialized in the "env:" area. This allows you to reuse the values ​​in the jobs of your workflow. Of course, every value in the **"with:"** area of ​​the github action can also be set directly. In the example, the values ​​of the environment variables are assigned to the input parameters of the LeanIX Action in this area. In order to meet the security standards, the API token must not be set in clear text in the workflow area, but the way described above must be chosen.
 
 #### Mandatory and optional definitions
-The steps and assignments carried out under "steps:" are necessary for the use of the LeanIX Action. In addition to the environment variables / input parameters to be set correctly, you can choose the following values ​​yourself:
+The steps and assignments carried out under "jobs:" are necessary for the use of the LeanIX Action. In addition to the environment variables / input parameters to be set correctly, you can choose the following values ​​yourself:
 
 - **"uses: leanix/github-actions-store-leanix-plugin@1.2.0":** Here you can choose which version of the LeanIX action you want to use.
 - **"id: LIXMI":** This value is optional, here you can choose any ID for the LeanIX step in order to reference it elsewhere. For more information, see also https://docs.github.com/en/actions/reference/workflow-syntax-for-github-actions#jobsjob_idstepsid
