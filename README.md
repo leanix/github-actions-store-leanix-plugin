@@ -16,7 +16,7 @@ Place the manifest.yml file containing the correct information about your projec
 
 #### Secret LeanIX API token
 
-In the "Settings" -> "Secrets" -> "Actions secrets" area of ​​the github project for which the action is used, a secret with the name "LEANIX_API_TOKEN" must be created, the value of which is a valid LeanIX token for the host that is used in the action. For the use of secrets in github see also https://docs.github.com/en/actions/reference/encrypted-secrets.
+In the "Settings" -> "Secrets" -> "Actions secrets" area of ​​the github project for which the action is used, a secret must be created, the value of which is a valid LeanIX token for the host that is used in the action. For the use of secrets in github see also https://docs.github.com/en/actions/reference/encrypted-secrets.
 
 
 ### Example workflow
@@ -79,7 +79,7 @@ The LeanIX host where the connector is located that should be used by the action
 
 **Required**
 
- The LeanIX API token for secure access.
+ The LeanIX API token for secure access to the LeanIX connector API on the chosen host. Use the name you chose for the secret in the project settings here.
 
 #### `manifest-path`
 
