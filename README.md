@@ -73,7 +73,7 @@ The input parameters used in the example are explained in more detail in the "In
               dependency-manager: ${{ env.DEPENDENCY_MANAGER }}  
               stage: ${{ env.STAGE }}  
               version: ${{ env.VERSION }}
-			  allow-failure: ${{ env.ALLOW_FAILURE }}
+	      allow-failure: ${{ env.ALLOW_FAILURE }}
 
 
 #### Environment variables
