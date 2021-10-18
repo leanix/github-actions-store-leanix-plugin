@@ -1,4 +1,4 @@
-name: "LeanIX Microservice Intelligence"
+name: "LeanIX Value Stream Management action"
 description: "Capture microservice and deployment information and send it to a LeanIX workspace"
 inputs:
   host:
