@@ -16,7 +16,7 @@ fi
 
 if [[ $1 == "GRADLE" ]]; then
   echo "Gradle repository detected. Attempting to generate dependency file"
-  gradle generateLicenseReport -I /miCiCd-init.gradle
+  gradle generateLicenseReport -I /vsmCiCd-init.gradle
 fi
 
 node /dist/index.js

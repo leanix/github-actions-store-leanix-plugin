@@ -1,6 +1,6 @@
 
 
-# LeanIX Microservice Intelligence action
+# LeanIX Value Stream Management action
 
 ## Description
 
@@ -63,9 +63,9 @@ The input parameters used in the example are explained in more detail in the "In
         steps:  
           - name: Checkout  
             uses: actions/checkout@v2  
-          - name: LeanIX Microservice Intelligence  
+          - name: LeanIX Value Stream Management 
             uses: leanix/github-actions-store-leanix-plugin@1.2.0  
-            id: LIXMI
+            id: LIXVSM
             with:  
               host: ${{ env.HOST }}  
               api-token: ${{ secrets.LEANIX_API_TOKEN }}  
@@ -83,7 +83,7 @@ In the example workflow, various environment variables are initialized in the "e
 The steps and assignments carried out under "jobs:" are necessary for the use of the LeanIX Action. In addition to the environment variables / input parameters to be set correctly, you can choose the following values ​​yourself:
 
 - **"uses: leanix/github-actions-store-leanix-plugin@1.2.0":** Here you can choose which version of the LeanIX action you want to use.
-- **"id: LIXMI":** This value is optional, here you can choose any ID for the LeanIX step in order to reference it elsewhere. For more information, see also https://docs.github.com/en/actions/reference/workflow-syntax-for-github-actions#jobsjob_idstepsid
+- **"id: LIXVSM":** This value is optional, here you can choose any ID for the LeanIX step in order to reference it elsewhere. For more information, see also https://docs.github.com/en/actions/reference/workflow-syntax-for-github-actions#jobsjob_idstepsid
 
 
 ### Inputs

@@ -1,0 +1,26 @@
+name: notification
+
+on:
+  release:
+    types: [published]
+
+env:
+  SLACK-CHANNEL: '#mi-connectors-notifications'
+
+jobs:
+  notify:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get credentials
+        uses: leanix/secrets-action@master
+        with:
+          secret-store-credentials: ${{ secrets.INJECTED_SECRET_STORE_CREDENTIALS }}
+
+      - name: Send success message on release
+        uses: archive/github-actions-slack@v1.0.0
+        with:
+          slack-bot-user-oauth-access-token: ${{ env.SLACK_TOKEN }}
+          slack-channel: ${{ env.SLACK-CHANNEL }}
+          slack-text: |
+            :beer: New ${{ github.event.release.tag_name }} version of ${{ github.repository }} successfully published!
+
