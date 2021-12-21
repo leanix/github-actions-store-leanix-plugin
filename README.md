@@ -42,38 +42,85 @@ The monitoring of the workflows and thus also that of the actions belonging to y
 ### Example workflow
 
 The input parameters used in the example are explained in more detail in the "Inputs" section. The workflow, including the action, is triggered when you push a new commit to the repository.
+```yaml
+name: leanix-action-test
 
-    name: leanix-action-test
-    
-    on:  
-      push:  
-    
-    env:  
-      HOST: app.leanix.net  
-      LEANIX_MANIFEST_PATH: /lx-manifest.yml  
-      DEPENDENCY_MANAGER: NPM  
-      STAGE: test  
-      VERSION: 2.2.0
-	  ALLOW_FAILURE: true
-	  
-    
+on:
+  push:
+
+env:
+  HOST: app.leanix.net
+  LEANIX_MANIFEST_PATH: /lx-manifest.yml
+  DEPENDENCY_MANAGER: NPM
+  STAGE: test
+  VERSION: 2.2.0
+ALLOW_FAILURE: true
+
+
+  jobs:
+    leanix_test_job:
+      runs-on: ubuntu-latest
+      steps:
+        - name: Checkout
+          uses: actions/checkout@v2
+        - name: LeanIX Value Stream Management
+          uses: leanix/github-actions-store-leanix-plugin@1.2.0
+          id: LIXVSM
+          with:
+            host: ${{ env.HOST }}
+            api-token: ${{ secrets.LEANIX_API_TOKEN }}
+            manifest-path: ${{ env.LEANIX_MANIFEST_PATH }}
+            dependency-manager: ${{ env.DEPENDENCY_MANAGER }}
+            stage: ${{ env.STAGE }}
+            version: ${{ env.VERSION }}
+            allow-failure: ${{ env.ALLOW_FAILURE }}
+```
+
+#### Maven
+##### Accessing custom mirror
+Example maven user settings file
+
+```xml
+<!-- settings.yaml is placed at the root level -->
+
+<settings xmlns="http://maven.apache.org/SETTINGS/1.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/SETTINGS/1.0.0 https://maven.apache.org/xsd/settings-1.0.0.xsd">
+    <servers>
+        <server>
+            <id>custom-server</id>
+            <username>${env.MAVEN_USERNAME}</username>
+            <password>${env.MAVEN_PASSWORD}</password>
+        </server>
+    </servers>
+<!--...-->
+</settings>
+
+```
+
+Corresponding GitHub workflow action configuration 
+
+```yaml
+    env:
+      MAVEN_USERNAME: ...
+      MAVEN_PASSWORD: ...
+    // ...
     jobs:  
       leanix_test_job:  
         runs-on: ubuntu-latest  
         steps:  
           - name: Checkout  
             uses: actions/checkout@v2  
+            
           - name: LeanIX Value Stream Management 
             uses: leanix/github-actions-store-leanix-plugin@1.2.0  
             id: LIXVSM
             with:  
-              host: ${{ env.HOST }}  
-              api-token: ${{ secrets.LEANIX_API_TOKEN }}  
-              manifest-path: ${{ env.LEANIX_MANIFEST_PATH }}  
-              dependency-manager: ${{ env.DEPENDENCY_MANAGER }}  
-              stage: ${{ env.STAGE }}  
-              version: ${{ env.VERSION }}
-              allow-failure: ${{ env.ALLOW_FAILURE }}
+              // ...
+              dependency-manager: MAVEN
+              maven-user-settings-path: settings.yaml
+```
+
 
 
 #### Environment variables
@@ -125,3 +172,6 @@ The current version the workflow is triggered for.
 
 Flag that indicates whether the entire workflow is allowed to continue if an error occurs in the LeanIX action. "True" means, the workflow continues upon error in the action, "false" makes it exit with error. Default: true
 
+#### `maven-user-settings-path`
+
+Path to the maven user settings file. This is ignored if the dependency manager is not MAVEN eg: 'settings.yml' if the file is at the root level

@@ -5,8 +5,6 @@ set -e
 
 if [[ $1 == "MAVEN" ]]; then
   #  if maven user settings path is not null or empty
-  pwd
-  ls
   if [[ $2 != "" ]]; then
     echo "Maven repository detected with custom user settings (using path $2). Attempting to generate dependency file"
     mvn -s "$2" license:download-licenses
@@ -28,4 +26,4 @@ if [[ $1 == "GRADLE" ]]; then
   gradle generateLicenseReport -I /vsmCiCd-init.gradle
 fi
 
-#node /dist/index.js
+node /dist/index.js
