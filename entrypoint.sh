@@ -25,4 +25,4 @@ if [[ $1 == "GRADLE" ]]; then
   gradle generateLicenseReport -I /vsmCiCd-init.gradle
 fi
 
-node /dist/index.js
+#node /dist/index.js
