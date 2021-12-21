@@ -118,7 +118,7 @@ Corresponding GitHub workflow action configuration
             with:  
               // ...
               dependency-manager: MAVEN
-              maven-user-settings-path: settings.yaml
+              maven-settings-path: settings.yaml
 ```
 
 
@@ -172,6 +172,6 @@ The current version the workflow is triggered for.
 
 Flag that indicates whether the entire workflow is allowed to continue if an error occurs in the LeanIX action. "True" means, the workflow continues upon error in the action, "false" makes it exit with error. Default: true
 
-#### `maven-user-settings-path`
+#### `maven-settings-path`
 
 Path to the maven user settings file. This is ignored if the dependency manager is not MAVEN eg: 'settings.yml' if the file is at the root level

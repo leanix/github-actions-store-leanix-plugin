@@ -20,7 +20,7 @@ inputs:
   dependency-manager:
     description: "Type of the dependency manager used for the project eg: NPM, MAVEN"
     required: true
-  maven-user-settings-path:
+  maven-settings-path:
     description: "Path to the maven user settings file. Make sure dependency manager is MAVEN"
     required: false
   allow-failure:
@@ -32,4 +32,4 @@ runs:
   image: 'Dockerfile'
   args:
     - ${{ inputs.dependency-manager }}
-    - ${{ inputs.maven-user-settings-path }}
+    - ${{ inputs.maven-settings-path }}
