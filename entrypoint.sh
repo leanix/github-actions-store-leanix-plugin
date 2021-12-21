@@ -3,8 +3,14 @@
 set -e
 
 if [[ $1 == "MAVEN" ]]; then
+#  if maven user settings path is not null or space
+  if [[ $2 != "" ]]; then
+  echo "Maven repository detected with custom user settings (using path $2). Attempting to generate dependency file"
+  mvn -s "$2" license:download-licenses
+  else
   echo "Maven repository detected. Attempting to generate dependency file"
   mvn license:download-licenses
+  fi
 fi
 
 if [[ $1 == "NPM" ]]; then
