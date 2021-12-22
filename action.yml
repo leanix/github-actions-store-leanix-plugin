@@ -20,6 +20,9 @@ inputs:
   dependency-manager:
     description: "Type of the dependency manager used for the project eg: NPM, MAVEN"
     required: true
+  maven-settings-path:
+    description: "Path to the maven user settings file. Make sure dependency manager is MAVEN"
+    required: false
   allow-failure:
     description: "Pipeline exits with a failure upon error if set to false"
     required: false
@@ -29,3 +32,4 @@ runs:
   image: 'Dockerfile'
   args:
     - ${{ inputs.dependency-manager }}
+    - ${{ inputs.maven-settings-path }}
