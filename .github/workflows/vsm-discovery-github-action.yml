@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - main
+      - features/CID-1196/add-vsm-discovery-github-action
   workflow_dispatch:
 
 jobs:
@@ -19,13 +20,6 @@ jobs:
         with:
           secret-store-credentials: ${{ secrets.INJECTED_SECRET_STORE_CREDENTIALS }}
 
-      - name: 'Resolve Project Dependencies Using Npm'
-        shell: bash
-        run: |
-          npm install
-          npm run build --if-present
-          npm run test --if-present
-
       - name: Setup Node ${{ env.NODE_VERSION }} Environment
         uses: actions/setup-node@v1
         with:
@@ -33,10 +27,11 @@ jobs:
 
       - name: Generate SBOM
         run:  |
+          npm install
           npm install --global @cyclonedx/cyclonedx-npm
           cyclonedx-npm --output-file "bom.json"
 
       - name: VSM discovery
         uses: leanix/vsm-discovery-github-action@main
         with:
-          api-token: ${{ secrets.VSM_LEANIX_API_TOKEN }}
+          api-token: ${{ env.VSM_LEANIX_API_TOKEN }}
