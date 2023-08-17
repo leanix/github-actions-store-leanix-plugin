@@ -1,4 +1,4 @@
-FROM node:20.3-bullseye-slim
+FROM node:20.5.1-bullseye-slim
 RUN apt-get update && apt-get install -y openjdk-11-jdk && apt-get install maven -y && apt-get install gradle -y
 
 COPY entrypoint.sh /entrypoint.sh
