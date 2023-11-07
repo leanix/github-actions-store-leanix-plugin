@@ -1,6 +1,8 @@
 
 
 # LeanIX Value Stream Management action
+> ⚠️ **Deprecation** <br>
+> This GitHub Action will be deprecated 21.11.2023. If you're still using this action please make sure you migrate to the [supported service endpoint](https://docs-vsm.leanix.net/reference/discovery_service)
 
 ## Description
 
